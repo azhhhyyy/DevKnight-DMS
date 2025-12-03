@@ -1,4 +1,5 @@
-# DevKnight-DMS
+![DevKnight logo](./assets/devknight-logo.svg)
+# DevKnight-DMS 
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
