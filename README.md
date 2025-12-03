@@ -93,7 +93,7 @@ Next.js Frontend → Access Layer → Supabase Backend → Audit / Storage / Per
 ## 7. Installation & Setup
 
 ```bash
-git clone https://github.com/your-username/devknight-dms.git
+git clone https://github.com/azhhhyyy/DevKnight-DMS/
 cd devknight-dms
 npm install
 npm run dev
