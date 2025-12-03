@@ -1,3 +1,7 @@
+![DevKnight Banner](https://raw.githubusercontent.com/azhhhyyy/DevKnight-DMS/refs/heads/main/assets/devknight-banner.png)
+
+---
+
 # DevKnight-DMS 
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
@@ -6,11 +10,9 @@
 ![Supabase](https://img.shields.io/badge/Supabase-integrated-green)
 ![License](https://img.shields.io/badge/license-proprietary-red)
 
-![DevKnight Banner](https://raw.githubusercontent.com/azhhhyyy/DevKnight-DMS/refs/heads/main/assets/devknight-banner.png)
-
 ---
 
-> **DevKnight** — a secure, modern Document Management System for teams that demand airtight governance, auditable workflows, and developer ergonomics.
+> **DevKnight DMS** — a secure, modern Document Management System for teams that demand airtight governance, auditable workflows, and developer ergonomics.
 
 ---
 
