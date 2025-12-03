@@ -1,4 +1,3 @@
-![DevKnight logo](./assets/devknight-logo.svg)
 # DevKnight-DMS 
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
