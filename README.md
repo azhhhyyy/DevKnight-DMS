@@ -6,7 +6,7 @@
 ![Supabase](https://img.shields.io/badge/Supabase-integrated-green)
 ![License](https://img.shields.io/badge/license-proprietary-red)
 
-![DevKnight Banner](./assets/devknight-banner.svg)
+![DevKnight Banner](./assets/devknight-banner.png)
 
 ---
 
@@ -17,7 +17,7 @@
 ## 🎯 Brand Essence
 
 * **Name:** DevKnight
-* **Positioning:** Enterprise-grade, developer-first DMS with productized security and simple admin workflows.
+* **Positioning:** MSME Friendly, developer-first DMS with productized security and simple admin workflows.
 * **Tone:** Confident, precise, technical-friendly, serviceable.
 
 ---
@@ -26,8 +26,8 @@
 
 ### Logo
 
-* Primary: `assets/devknight-logo.svg` (horizontal lock + shield mark)
-* Variant: `assets/devknight-mark.svg` (shield only for small UI)
+* Primary: `assets/devknight-logo.svg`
+* Variant: `assets/devknight-mark.svg`
 
 ### Color Palette
 
@@ -232,13 +232,5 @@ Provide small templates in `.github/` for issues and PRs:
 * **Owner:** azhhhyyy
 * **Repo:** `github.com/azhhhyyy/DevKnight-DMS`
 * **Email:** `devknight@yourdomain.com` (replace as appropriate)
-
----
-
-## ✅ Next steps I can do for you
-
-* Generate `assets/devknight-logo.svg` and `devknight-banner.svg` mockups
-* Produce a lightweight SVG architecture diagram
-* Create `CONTRIBUTING.md` and `.github` templates
 
 ---
