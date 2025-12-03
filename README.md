@@ -75,30 +75,30 @@ Prototype only. Commercial version is not open-source.
 Next.js Frontend → Access Layer → Supabase Backend → Audit / Storage / Permissions
 ```
 
-- TypeScript backend  
-- RLS-enforced access control  
-- Supabase storage + auth  
-- Admin workflow logic  
+✅ TypeScript backend  
+✅ RLS-enforced access control  
+✅ Supabase storage + auth  
+✅ Admin workflow logic  
 
 ## 6. Features  
-- Document uploads  
-- Admin dashboard  
-- User management  
-- Share creation/deletion  
-- Quarantine system  
-- Audit logs (latest 100)  
-- REST API endpoints  
-- Environment-based config  
+✅ Document uploads  
+✅ Admin dashboard  
+✅ User management  
+✅ Share creation/deletion  
+✅ Quarantine system  
+✅ Audit logs (latest 100)  
+✅ REST API endpoints  
+✅ Environment-based config  
 
 ## 7. Installation & Setup
-
+1️⃣ Clone repository
 ```bash
 git clone https://github.com/azhhhyyy/DevKnight-DMS/
 cd devknight-dms
 npm install
 npm run dev
 ```
-
+2️⃣ Setup Environment Variables
 Create `.env`:
 ```
 NEXT_PUBLIC_SUPABASE_URL=...
@@ -159,9 +159,7 @@ No external institutions involved.
 
 ## 14. Contact & Support
 
-Business & Licensing: azhaanshaikh2005@gmail.com  
-Creator: Azhaan Shaikh  
-Website: https://devknight.club  
+📩 Business / Licensing: azhaanshaikh2005@gmail.com 👤 Creator & Author (Prototype): Azhaan Shaikh 🌐 Azhaan Shaikh: https://azhaanshaikh.com 🌐 DevKnight: https://devknight.club 🔒 Commercial product inquiries handled exclusively by DevKnight
 
 ## 15. License (Custom “Open-Source Prototype License”)
 
