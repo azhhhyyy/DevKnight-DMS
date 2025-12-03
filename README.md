@@ -6,7 +6,7 @@
 ![Supabase](https://img.shields.io/badge/Supabase-integrated-green)
 ![License](https://img.shields.io/badge/license-proprietary-red)
 
-
+![DevKnight Banner](./assets/devknight-banner.png)
 
 ---
 
