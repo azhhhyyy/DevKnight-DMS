@@ -65,12 +65,6 @@ CSS snippet for README rendering (optional):
 
 ---
 
-## 🏷 Badges
-
-![Status](https://img.shields.io/badge/status-active-brightgreen) ![Next.js](https://img.shields.io/badge/Next.js-14-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Supabase](https://img.shields.io/badge/Supabase-integrated-green)
-
----
-
 ## 🚀 Hero / Quick Summary (copy for README top)
 
 > **DevKnight — Secure Document Management for modern teams.**
