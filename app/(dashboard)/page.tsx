@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from "react"
 import useSWR from "swr"
 import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Header } from "@/components/header"
 import { SearchBar } from "@/components/search-bar"
 import { SidebarFilters } from "@/components/sidebar-filters"
 import { DocumentTable } from "@/components/document-table"
@@ -105,9 +104,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-muted/30">
-      <Header />
-
+    <>
       <div className="flex">
         {/* Sidebar */}
         <aside className="w-72 border-r bg-background p-6 min-h-[calc(100vh-4rem)] flex-shrink-0">
@@ -159,6 +156,6 @@ export default function Dashboard() {
 
       {/* Preview Modal */}
       <DocumentPreview document={previewDoc} open={!!previewDoc} onClose={() => setPreviewDoc(null)} />
-    </div>
+    </>
   )
 }
