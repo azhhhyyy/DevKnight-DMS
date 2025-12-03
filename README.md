@@ -10,211 +10,173 @@
 ![Supabase](https://img.shields.io/badge/Supabase-integrated-green)
 ![License](https://img.shields.io/badge/license-proprietary-red)
 
----
+# DevKnight-DMS – Secure Document Management & Access Control Platform
+> **Enterprise Prototype Repository (Open Source Components) — Final Commercial Version Owned by DevKnight (DKCDEVKNIGHT TECHNOLOGIES PRIVATE LIMITED)**  
+> **Original Author & Developer: Azhaan Shaikh**
 
-## ⚡ Overview
+## 1. Overview  
+DevKnight-DMS is a secure, modular Document Management System designed for organizations that need controlled access, auditability, and structured information governance.
 
-DevKnight-DMS is a secure, scalable, and modern Document Management System engineered for teams that need tight access control, clear auditability, and structured document governance.  
-The system integrates role-based permissions, a sharing engine, an admin console, and comprehensive action tracking — built with **Next.js**, **TypeScript**, and **Supabase**.
+Instead of being a simple file uploader, DevKnight-DMS is built as a role-aware access control system integrating:
+- Document permissions  
+- User roles & admin control  
+- Share governance  
+- Audit trails  
+- Quarantine for suspicious documents  
+- Supabase authentication  
+- Next.js + TypeScript architecture  
 
----
+The system is suitable for:
+- Internal enterprise document workflows  
+- Legal/HR governance  
+- Multi-user collaboration  
+- Sensitive document storage  
 
-## 🧩 Core Features
+Built with **Next.js, TypeScript, and Supabase**, designed for modern cloud deployments.
 
-### 🔐 Role-Based Access Control  
-TypeScript-powered authentication & authorization with robust permission checks.
+## 2. Origin & Development History  
+DevKnight-DMS was conceptualized and engineered primarily by **Azhaan Shaikh**, including architecture, access logic, admin UI, and Supabase integration.
 
-### 🔗 Document Sharing Control  
-Admin-controlled sharing workflows through `/api/admin/shares`.
+Goals:
+1. Create an auditable, secure DMS  
+2. Build deterministic, reliable access models  
+3. Evolve into SaaS-grade product  
+4. Maintain modular extensibility  
 
-### 🛠️ Admin Management Console  
-User management, access supervision, and share governance.
+Prototype → Alpha → Internal Production phases.
 
-### 📝 Audit Logging  
-Retrieves the last 100 system actions via `/api/audit-logs` for compliance and visibility.
+## 3. Ownership & Licensing Notice  
 
-### 🧪 Quarantine System  
-Isolates suspicious or restricted files from general access.
+| Component | Ownership | License |
+|----------|-----------|---------|
+| Prototype (this repo) | Azhaan Shaikh | Open-source (Custom License – see §15) |
+| Experimental builds | Azhaan Shaikh | Open-source |
+| Final SaaS version | DevKnight (DKCDEVKNIGHT TECHNOLOGIES PRIVATE LIMITED) | Closed-source |
+| Brand “DevKnight-DMS” | DevKnight | Commercial IP |
 
----
+Prototype only. Commercial version is not open-source.
 
-## 🏛️ System Architecture
+## 4. Prototype vs Commercial Product
 
-```txt
-┌──────────────────────────┐
-│        Next.js App       │
-│  (UI, API Routes, Auth)  │
-└──────────────┬───────────┘
-               │
-               │ Supabase Client
-               ▼
-┌──────────────────────────┐
-│        Supabase          │
-│ Auth • Database • RLS    │
-│ Tables: users, shares,   │
-│ audit_logs, quarantine   │
-└──────────────────────────┘
-````
+| Feature | Prototype | Commercial SaaS |
+|---------|----------|-----------------|
+| Next.js App | ✅ | ✅ |
+| Supabase Auth | ✅ | Advanced |
+| Document Permissions | Basic | Enterprise RBAC |
+| Audit Logs | Basic | Compliance-grade |
+| Quarantine | Basic | Automated flagging |
+| Teams/Spaces | ❌ | ✅ |
+| Billing | ❌ | ✅ |
+| SSO, OAuth | ❌ | Enterprise |
 
----
+## 5. Architecture & Stack
 
-## 📦 Requirements
-
-* Node.js ≥ 16
-* npm or yarn
-* TypeScript
-* Supabase project with authentication enabled
-
----
-
-## 🚀 Quickstart
-
-### 1. Clone
-
-```bash
-git clone https://github.com/azhhhyyy/DevKnight-DMS.git
-cd DevKnight-DMS
+```
+Next.js Frontend → Access Layer → Supabase Backend → Audit / Storage / Permissions
 ```
 
-### 2. Install
+- TypeScript backend  
+- RLS-enforced access control  
+- Supabase storage + auth  
+- Admin workflow logic  
+
+## 6. Features  
+- Document uploads  
+- Admin dashboard  
+- User management  
+- Share creation/deletion  
+- Quarantine system  
+- Audit logs (latest 100)  
+- REST API endpoints  
+- Environment-based config  
+
+## 7. Installation & Setup
 
 ```bash
+git clone https://github.com/your-username/devknight-dms.git
+cd devknight-dms
 npm install
-# or
-yarn install
+npm run dev
 ```
-
-### 3. Configure Supabase
 
 Create `.env`:
-
 ```
-NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
-```
-
-### 4. Database Setup
-
-Required tables include:
-
-* `audit_logs`
-* `shares`
-* `users` (managed by Supabase Auth)
-* optional: `quarantine`
-
-Enable RLS and define role-based policies.
-
-### 5. Run
-
-```bash
-npm run dev
-# or
-yarn dev
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 ```
 
-App runs at:
-**[http://localhost:3000](http://localhost:3000)**
+## 8. Deployment Options
 
----
+| Deployment | Supported |
+|-----------|-----------|
+| Vercel | ✅ |
+| Supabase Edge | ✅ |
+| Docker | ✅ |
+| Local | ✅ |
+| Kubernetes | Prototype: ❌ / SaaS: ✅ |
 
-## 📡 API Reference
+## 9. Folder Structure
 
-| Endpoint                 | Method | Description                            |
-| ------------------------ | ------ | -------------------------------------- |
-| `/api/admin/users`       | GET    | Fetch all users (Admin only)           |
-| `/api/admin/shares`      | GET    | Fetch all document shares (Admin only) |
-| `/api/admin/shares/[id]` | DELETE | Delete a share entry (Admin only)      |
-| `/api/audit-logs`        | GET    | Fetch latest 100 audit logs            |
-
----
-
-## 🧪 Example Endpoint Implementation
-
-```ts
-import { NextResponse } from "next/server"
-import { createClient } from "@/lib/supabase/server"
-
-export async function GET() {
-  try {
-    const supabase = await createClient()
-
-    const { data, error } = await supabase
-      .from("audit_logs")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(100)
-
-    if (error) {
-      console.error("Audit logs fetch error:", error)
-      return NextResponse.json({ error: "Failed to fetch audit logs" }, { status: 500 })
-    }
-
-    return NextResponse.json({ data })
-  } catch (error) {
-    console.error("Unexpected error fetching audit logs:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
-  }
-}
+```
+devknight-dms/
+│── app/
+│── lib/
+│── components/
+│── config/
+│── prototype/
+│── README.md
+│── LICENSE
 ```
 
----
+## 10. Roadmap (Prototype)
 
-## ⚙️ Configuration
+| Task | Status |
+|------|--------|
+| RBAC | ✅ |
+| Audit Logs | ✅ |
+| Quarantine | ✅ |
+| Dashboard | Partial |
+| Export Features | 🔜 |
+| Org Roles | 🔜 |
 
-* Controlled through `.env`
-* Depends heavily on Supabase RLS policies
-* Admin privileges enforced through server-side helpers:
+## 11. Contribution Guidelines  
+Forks welcome for prototype only.  
+Commercial misuse prohibited.  
+PRs allowed for bug fixes, docs, UI, plugins (non-commercial).
 
-  * `getCurrentUser()`
-  * `getUserRole()`
-  * `canManageUsers()`
+## 12. Legal Notice
 
----
+- Created and engineered primarily by **Azhaan Shaikh**  
+- All commercial rights belong to **DevKnight**  
+- This repo is prototype-only  
+- Commercial version cannot be reverse-engineered  
 
-## 🤝 Contributing
+## 13. Credits  
+**Azhaan Shaikh** — Founder, Architect, Full Stack Designer  
+Internal DevKnight support team — Minor contributions  
 
-1. Fork
-2. Create a feature branch
-3. Commit & test
-4. Open a pull request
+No external institutions involved.
 
-Clear and concise PR descriptions are appreciated.
+## 14. Contact & Support
 
----
+Business & Licensing: azhaanshaikh2005@gmail.com  
+Creator: Azhaan Shaikh  
+Website: https://devknight.club  
 
-## 📄 License
+## 15. License (Custom “Open-Source Prototype License”)
 
-All rights reserved to **azhhhyyy**.
-License terms not publicly specified.
+```
+You may:
+✓ View, study, and modify the prototype  
+✓ Fork for educational use  
+✓ Extend for non-commercial use  
 
----
+You may NOT:
+✗ Use in commercial products  
+✗ Use the name “DevKnight-DMS” commercially  
+✗ Redistribute under a commercial license  
+✗ Remove attribution  
 
-## 🙌 Acknowledgments
+Commercial version is CLOSED SOURCE and owned by DevKnight.
+```
 
-* **Next.js** — UI framework
-* **Supabase** — Auth + DB stack
-* **TypeScript** — Strong, scalable codebase
-
----
-
-If you want, I can also generate:
-
-* a polished logo banner,
-* a “Tech Stack” infographic,
-* an architecture diagram SVG,
-* or a fully branded DevKnight README theme.
-
-
-## 🧾 License
-
-You are free to use this code as inspiration. Please do not copy it directly. Crediting the author is appreciated. Please remove all personal information (images, etc.)
-
----
-
-## 📬 Contact
-
-* **Owner:** azhhhyyy
-* **Repo:** `github.com/azhhhyyy/DevKnight-DMS`
-* **Email:** `hello@devknight.club`
-
----
