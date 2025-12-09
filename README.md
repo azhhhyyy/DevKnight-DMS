@@ -1,4 +1,4 @@
-![DevKnight Banner](https://raw.githubusercontent.com/azhhhyyy/DevKnight-DMS/refs/heads/main/assets/devknight-banner.png)
+![DevKnight Banner](./assets/devknight-banner.png)
 
 ---
 
