@@ -1,0 +1,399 @@
+[00:00:01.311] Server  WARN     ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 5.0.2
+[00:00:01.524] Server  LOG      ✓ Ready in 1123ms
+[00:00:10.150] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:11.334] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
+                            className="font-sans antialiased"
+-                           __processed_5f603ca6-6a2e-456b-b454-c8559a09eb4c__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+                          >
+                  ...
+
+[00:00:11.334] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:11.334] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:11.334] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765354579041}
+[00:01:09.189] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+      <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+        <LoadingBoundary name="(dashboard)/" loading={[...]}>
+          <Suspense name="(dashboard)/" fallback={<Fragment>}>
+            <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+              <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+                <RedirectBoundary>
+                  <RedirectErrorBoundary router={{...}}>
+                    <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                      <SegmentViewNode type="page" pagePath="(dashboard...">
+                        <SegmentTrieNode>
+                        <ClientPageRoot Component={function Dashboard} serverProvidedParams={{...}}>
+                          <Dashboard params={Promise} searchParams={Promise}>
+                            <div
+                              className="flex"
+-                             bis_skin_checked="1"
+                            >
+                              <aside className="w-72 borde...">
+                                <SidebarFilters filters={{search:"", ...}} availableTypes={[...]} ...>
+                                  <div
+                                    className="space-y-6"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="bg-muted/50 rounded-lg p-4"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                                      <Slot ref={function}>
+                                        <SlotClone ref={function}>
+                                          <Primitive.div data-slot="accordion" className="space-y-2" ...>
+                                            <div
+                                              data-slot="accordion"
+                                              className="space-y-2"
+                                              data-orientation="vertical"
+                                              onKeyDown={function handleEvent}
+                                              ref={function}
+-                                             bis_skin_checked="1"
+                                            >
+                                              ...
+                                                <CollapsibleProvider scope={{...}} disabled={undefined} ...>
+                                                  <Primitive.div data-state="open" data-disabled={undefined} ...>
+                                                    <div
+                                                      data-state="open"
+                                                      data-disabled={undefined}
+                                                      data-orientation="vertical"
+                                                      data-slot="accordion-item"
+                                                      className="last:border-b-0 border rounded-lg px-3"
+                                                      ref={null}
+-                                                     bis_skin_checked="1"
+                                                    >
+                                                      ...
+                                                        <CollapsibleTrigger aria-disabled={undefined} ...>
+                                                          <Primitive.button type="button" aria-controls="radix-_R_b..." ...>
+                                                            <button type="button" aria-controls="radix-_R_b..." ...>
+                                                              <div
+                                                                className="flex items-center gap-2"
+-                                                               bis_skin_checked="1"
+                                                              >
+                                                              ...
+                                                      ...
+                                                        <Presence present={true}>
+                                                          <Primitive.div data-state="open" data-disabled={undefined} ...>
+                                                            <div
+                                                              data-state="open"
+                                                              data-disabled={undefined}
+                                                              id="radix-_R_blinekndlb_"
+                                                              hidden={false}
+                                                              role="region"
+                                                              aria-labelledby="radix-_R_3linekndlb_"
+                                                              data-orientation="vertical"
+                                                              data-slot="accordion-content"
+                                                              className="data-[state=closed]:animate-accordion-up data..."
+                                                              style={{--radix-collapsible-content-height:undefined, ...}}
+                                                              ref={function}
+-                                                             bis_skin_checked="1"
+                                                            >
+                                                              <div
+                                                                className="pt-0 pb-3"
+-                                                               bis_skin_checked="1"
+                                                              >
+                                                                <div
+                                                                  className="space-y-2"
+-                                                                 bis_skin_checked="1"
+                                                                >
+                                              ...
+                                                <CollapsibleProvider scope={{...}} disabled={undefined} ...>
+                                                  <Primitive.div data-state="open" data-disabled={undefined} ...>
+                                                    <div
+                                                      data-state="open"
+                                                      data-disabled={undefined}
+                                                      data-orientation="vertical"
+                                                      data-slot="accordion-item"
+                                                      className="last:border-b-0 border rounded-lg px-3"
+                                                      ref={null}
+-                                                     bis_skin_checked="1"
+                                                    >
+                                                      ...
+                                                        <CollapsibleTrigger aria-disabled={undefined} ...>
+                                                          <Primitive.button type="button" aria-controls="radix-_R_d..." ...>
+                                                            <button type="button" aria-controls="radix-_R_d..." ...>
+                                                              <div
+                                                                className="flex items-center gap-2"
+-                                                               bis_skin_checked="1"
+                                                              >
+                                                              ...
+                                                      ...
+                                                        <Presence present={true}>
+                                                          <Primitive.div data-state="open" data-disabled={undefined} ...>
+                                                            <div
+                                                              data-state="open"
+                                                              data-disabled={undefined}
+                                                              id="radix-_R_dlinekndlb_"
+                                                              hidden={false}
+                                                              role="region"
+                                                              aria-labelledby="radix-_R_5linekndlb_"
+                                                              data-orientation="vertical"
+                                                              data-slot="accordion-content"
+                                                              className="data-[state=closed]:animate-accordion-up data..."
+                                                              style={{--radix-collapsible-content-height:undefined, ...}}
+                                                              ref={function}
+-                                                             bis_skin_checked="1"
+                                                            >
+                                                              <div
+                                                                className="pt-0 pb-3"
+-                                                               bis_skin_checked="1"
+                                                              >
+                                                                <div
+                                                                  className="space-y-2 max-h-48 overflow-y-auto"
+-                                                                 bis_skin_checked="1"
+                                                                >
+                                              ...
+                                                <CollapsibleProvider scope={{...}} disabled={undefined} ...>
+                                                  <Primitive.div data-state="open" data-disabled={undefined} ...>
+                                                    <div
+                                                      data-state="open"
+                                                      data-disabled={undefined}
+                                                      data-orientation="vertical"
+                                                      data-slot="accordion-item"
+                                                      className="last:border-b-0 border rounded-lg px-3"
+                                                      ref={null}
+-                                                     bis_skin_checked="1"
+                                                    >
+                                                      ...
+                                                        <CollapsibleTrigger aria-disabled={undefined} ...>
+                                                          <Primitive.button type="button" aria-controls="radix-_R_f..." ...>
+                                                            <button type="button" aria-controls="radix-_R_f..." ...>
+                                                              <div
+                                                                className="flex items-center gap-2"
+-                                                               bis_skin_checked="1"
+                                                              >
+                                                              ...
+                                                      ...
+                                                        <Presence present={true}>
+                                                          <Primitive.div data-state="open" data-disabled={undefined} ...>
+                                                            <div
+                                                              data-state="open"
+                                                              data-disabled={undefined}
+                                                              id="radix-_R_flinekndlb_"
+                                                              hidden={false}
+                                                              role="region"
+                                                              aria-labelledby="radix-_R_7linekndlb_"
+                                                              data-orientation="vertical"
+                                                              data-slot="accordion-content"
+                                                              className="data-[state=closed]:animate-accordion-up data..."
+                                                              style={{--radix-collapsible-content-height:undefined, ...}}
+                                                              ref={function}
+-                                                             bis_skin_checked="1"
+                                                            >
+                                                              <div
+                                                                className="pt-0 pb-3"
+-                                                               bis_skin_checked="1"
+                                                              >
+                                                                <div
+                                                                  className="space-y-3"
+-                                                                 bis_skin_checked="1"
+                                                                >
+                                                                  <div
+-                                                                   bis_skin_checked="1"
+                                                                  >
+                                                                  <div
+-                                                                   bis_skin_checked="1"
+                                                                  >
+                              <main className="flex-1 p-6">
+                                <div
+                                  className="flex items-center gap-4 mb-6"
+-                                 bis_skin_checked="1"
+                                >
+                                  <SearchBar value="" onChange={function onChange}>
+                                    <div
+                                      className="relative flex-1 max-w-xl"
+-                                     bis_skin_checked="1"
+                                    >
+                                  ...
+                                <DocumentTable documents={[...]} onPreview={function bound dispatchSetState} ...>
+                                  <div
+                                    className="flex flex-col items-center justify-center py-16 text-center"
+-                                   bis_skin_checked="1"
+                                  >
+                            ...
+                      ...
+                    ...
+      ...
+
+[00:01:11.803] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:12.002] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
+                            className="font-sans antialiased"
+-                           __processed_2742418c-56c6-4a32-9008-09b9c6057666__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+                          >
+                  ...
+
+[00:01:12.002] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:01:12.002] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:01:12.002] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765354640419}
+[00:08:15.660] Server  LOG      ✓ Compiled in 84ms
+[00:09:26.905] Server  LOG      ✓ Compiled in 84ms
+[00:10:16.203] Server  LOG      ✓ Compiled in 83ms
+[00:11:21.910] Server  LOG      ✓ Compiled in 125ms
+[00:11:27.438] Server  LOG      ✓ Compiled in 119ms
+[03:50:44.609] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:50:44.897] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
+                            className="font-sans antialiased"
+-                           __processed_1291907f-fe0d-4a92-9072-4dbccb53434f__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+                          >
+                  ...
+
+[03:50:45.069] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:50:45.069] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[03:50:45.069] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765368413484}
+[04:16:26.800] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\.next\dev\server\chunks\node_modules__pnpm_0c795448._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.812] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\.next\dev\server\chunks\[root-of-the-server]__fcfe2584._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.830] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\node_modules\.pnpm\next@16.0.7_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.839] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\.next\dev\server\chunks\e559b_next_dd103a7e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.847] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\node_modules\.pnpm\next@16.0.7_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.849] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\node_modules\.pnpm\next@16.0.7_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.851] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\node_modules\.pnpm\next@16.0.7_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.853] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\node_modules\.pnpm\next@16.0.7_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.856] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\node_modules\.pnpm\next@16.0.7_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.858] Server  ERROR   C:\Users\azhaa\DevKnight-DMS\node_modules\.pnpm\next@16.0.7_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:16:26.860] Server  ERROR   Upload error: Error: Vercel Blob: No token found. Either configure the `BLOB_READ_WRITE_TOKEN` environment variable, or pass a `token` option to your calls.
+[05:41:44.629] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:41:45.346] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
+                            className="font-sans antialiased"
+-                           __processed_3931c3ca-a448-4d3e-918b-14fbcf1717ab__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+                          >
+                  ...
+
+[05:41:45.346] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[05:41:45.346] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[05:41:45.346] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765375073633}
