@@ -71,9 +71,9 @@ Prototype only. Commercial version is not open-source.
 
 ## 5. Architecture & Stack
 
-```
+\`\`\`
 Next.js Frontend → Access Layer → Supabase Backend → Audit / Storage / Permissions
-```
+\`\`\`
 
 ✅ TypeScript backend  
 ✅ RLS-enforced access control  
@@ -92,18 +92,18 @@ Next.js Frontend → Access Layer → Supabase Backend → Audit / Storage / Per
 
 ## 7. Installation & Setup
 1️⃣ Clone repository
-```bash
+\`\`\`bash
 git clone https://github.com/azhhhyyy/DevKnight-DMS/
 cd devknight-dms
 npm install
 npm run dev
-```
+\`\`\`
 2️⃣ Setup Environment Variables
 Create `.env`:
-```
+\`\`\`
 NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
-```
+\`\`\`
 
 ## 8. Deployment Options
 
@@ -117,7 +117,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 
 ## 9. Folder Structure
 
-```
+\`\`\`
 devknight-dms/
 │── app/
 │── lib/
@@ -126,7 +126,7 @@ devknight-dms/
 │── prototype/
 │── README.md
 │── LICENSE
-```
+\`\`\`
 
 ## 10. Roadmap (Prototype)
 
@@ -163,7 +163,7 @@ No external institutions involved.
 
 ## 15. License (Custom “Open-Source Prototype License”)
 
-```
+\`\`\`
 You may:
 ✓ View, study, and modify the prototype  
 ✓ Fork for educational use  
@@ -176,5 +176,4 @@ You may NOT:
 ✗ Remove attribution  
 
 Commercial version is CLOSED SOURCE and owned by DevKnight.
-```
-
+\`\`\`
