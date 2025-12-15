@@ -105,9 +105,9 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="flex min-h-[calc(100vh-3.5rem)]">
+      <div className="flex">
         {/* Sidebar */}
-        <aside className="sticky top-14 h-[calc(100vh-3.5rem)] w-72 overflow-y-auto border-r bg-sidebar/50 backdrop-blur-sm p-6 hidden md:block">
+        <aside className="w-72 border-r bg-background p-6 min-h-[calc(100vh-4rem)] flex-shrink-0">
           <SidebarFilters
             filters={filters}
             availableTypes={availableTypes}
@@ -119,31 +119,25 @@ export default function Dashboard() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 md:p-8 overflow-x-hidden">
-          <div className="mx-auto max-w-6xl space-y-6">
-            {/* Search & Actions Bar */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between bg-card/50 p-1 rounded-xl">
-              <div className="w-full sm:w-auto flex-1 max-w-md">
-                <SearchBar value={filters.search} onChange={(search) => handleFilterChange({ search })} />
-              </div>
-              <Button onClick={() => setShowUpload(true)} className="w-full sm:w-auto shadow-sm hover:shadow-md transition-all">
-                <Plus className="h-4 w-4 mr-2" />
-                Upload Document
-              </Button>
-            </div>
-
-            {/* Document Table */}
-            <div className="rounded-xl border border-border/60 bg-card shadow-sm overflow-hidden">
-              <DocumentTable
-                documents={documents}
-                onPreview={setPreviewDoc}
-                onDelete={handleDelete}
-                sortBy={sortBy}
-                sortOrder={sortOrder}
-                onSort={handleSort}
-              />
-            </div>
+        <main className="flex-1 p-6">
+          {/* Search & Actions Bar */}
+          <div className="flex items-center gap-4 mb-6">
+            <SearchBar value={filters.search} onChange={(search) => handleFilterChange({ search })} />
+            <Button onClick={() => setShowUpload(true)}>
+              <Plus className="h-4 w-4 mr-2" />
+              Upload New
+            </Button>
           </div>
+
+          {/* Document Table */}
+          <DocumentTable
+            documents={documents}
+            onPreview={setPreviewDoc}
+            onDelete={handleDelete}
+            sortBy={sortBy}
+            sortOrder={sortOrder}
+            onSort={handleSort}
+          />
         </main>
       </div>
 

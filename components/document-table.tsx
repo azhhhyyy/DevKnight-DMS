@@ -114,98 +114,86 @@ export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrde
 
   if (documents.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center bg-card rounded-xl border border-dashed border-border/60">
-        <div className="h-16 w-16 rounded-full bg-muted/30 flex items-center justify-center mb-4">
-          <FileText className="h-8 w-8 text-muted-foreground/40" />
-        </div>
-        <h3 className="text-lg font-semibold text-foreground">No documents found</h3>
-        <p className="text-sm text-muted-foreground mt-1 max-w-sm mx-auto">
-          Upload your first document or try adjusting the filters to find what you're looking for.
-        </p>
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        <FileText className="h-16 w-16 text-muted-foreground/30 mb-4" />
+        <h3 className="text-lg font-medium text-muted-foreground">No documents found</h3>
+        <p className="text-sm text-muted-foreground/70 mt-1">Upload your first document or adjust your filters</p>
       </div>
     )
   }
 
   return (
     <>
-      <div className="relative rounded-xl border border-border/50 shadow-sm bg-card overflow-hidden">
+      <div className="rounded-lg border overflow-hidden">
         <Table>
-          <TableHeader className="bg-muted/50">
-            <TableRow className="hover:bg-transparent border-b border-border/60">
-              <TableHead className="w-[120px] font-medium text-xs uppercase tracking-wider text-muted-foreground h-10">
-                <Button variant="ghost" size="sm" className="h-8 p-0 hover:bg-transparent font-medium text-xs uppercase tracking-wider text-muted-foreground" onClick={() => onSort("doc_type")}>
+          <TableHeader>
+            <TableRow className="bg-muted/50">
+              <TableHead className="w-[100px]">
+                <Button variant="ghost" className="h-8 p-0 font-semibold" onClick={() => onSort("doc_type")}>
                   Type
                   <SortIcon column="doc_type" />
                 </Button>
               </TableHead>
-              <TableHead className="font-medium text-xs uppercase tracking-wider text-muted-foreground h-10">
-                <Button variant="ghost" size="sm" className="h-8 p-0 hover:bg-transparent font-medium text-xs uppercase tracking-wider text-muted-foreground" onClick={() => onSort("company_name")}>
+              <TableHead>
+                <Button variant="ghost" className="h-8 p-0 font-semibold" onClick={() => onSort("company_name")}>
                   Company
                   <SortIcon column="company_name" />
                 </Button>
               </TableHead>
-              <TableHead className="font-medium text-xs uppercase tracking-wider text-muted-foreground h-10">ID</TableHead>
-              <TableHead className="font-medium text-xs uppercase tracking-wider text-muted-foreground h-10">
-                <Button variant="ghost" size="sm" className="h-8 p-0 hover:bg-transparent font-medium text-xs uppercase tracking-wider text-muted-foreground" onClick={() => onSort("iso_date")}>
+              <TableHead>Document ID</TableHead>
+              <TableHead>
+                <Button variant="ghost" className="h-8 p-0 font-semibold" onClick={() => onSort("iso_date")}>
                   Date
                   <SortIcon column="iso_date" />
                 </Button>
               </TableHead>
-              <TableHead className="font-medium text-xs uppercase tracking-wider text-muted-foreground h-10">Filename</TableHead>
-              <TableHead className="w-[80px] font-medium text-xs uppercase tracking-wider text-muted-foreground h-10">Ver</TableHead>
-              <TableHead className="w-[80px] font-medium text-xs uppercase tracking-wider text-muted-foreground h-10">Size</TableHead>
-              <TableHead className="w-[120px] text-right font-medium text-xs uppercase tracking-wider text-muted-foreground h-10">Actions</TableHead>
+              <TableHead>Filename</TableHead>
+              <TableHead className="w-[80px]">Version</TableHead>
+              <TableHead className="w-[80px]">Size</TableHead>
+              <TableHead className="w-[120px] text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {documents.map((doc) => {
               const typeInfo = getDocTypeInfo(doc.doc_type)
               return (
-                <TableRow key={doc.id} className="group hover:bg-accent/40 border-b border-border/40 transition-colors">
-                  <TableCell className="py-2.5">
-                    <span className={cn("inline-flex items-center px-2 py-1 rounded-md text-[10px] font-semibold uppercase tracking-wide border border-transparent", typeInfo.color.replace('text-', 'bg-').replace('-600', '-500/10 text-') + typeInfo.color.split(' ')[0])}>
+                <TableRow key={doc.id} className="group">
+                  <TableCell>
+                    <span className={cn("px-2.5 py-1 rounded-full text-xs font-medium", typeInfo.color)}>
                       {typeInfo.label}
                     </span>
                   </TableCell>
-                  <TableCell className="font-medium text-sm text-foreground/90 py-2.5">
-                    <div className="flex items-center gap-2">
-                      <div className="h-6 w-6 rounded bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">
-                        {doc.company_name.substring(0, 2).toUpperCase()}
-                      </div>
-                      {doc.company_name}
-                    </div>
+                  <TableCell className="font-medium">{doc.company_name}</TableCell>
+                  <TableCell>
+                    <code className="text-xs bg-muted px-2 py-1 rounded font-mono">{doc.doc_serial}</code>
                   </TableCell>
-                  <TableCell className="py-2.5">
-                    <code className="text-[11px] bg-muted/60 text-muted-foreground px-1.5 py-0.5 rounded font-mono border border-border/50">{doc.doc_serial}</code>
+                  <TableCell>{formatDate(doc.iso_date)}</TableCell>
+                  <TableCell className="max-w-[200px] truncate text-muted-foreground text-sm">
+                    {doc.file_name}
                   </TableCell>
-                  <TableCell className="text-sm text-muted-foreground py-2.5">{formatDate(doc.iso_date)}</TableCell>
-                  <TableCell className="max-w-[200px] py-2.5">
-                    <div className="truncate text-sm font-medium text-foreground/80 group-hover:text-primary transition-colors cursor-pointer" onClick={() => onPreview(doc)}>
-                      {doc.file_name}
-                    </div>
+                  <TableCell>
+                    <Badge variant="outline" className="font-mono text-xs">
+                      v{doc.version || 1}
+                    </Badge>
                   </TableCell>
-                  <TableCell className="py-2.5">
-                    <span className="text-xs text-muted-foreground font-mono">v{doc.version || 1}</span>
-                  </TableCell>
-                  <TableCell className="text-muted-foreground text-xs font-mono py-2.5">
+                  <TableCell className="text-muted-foreground text-sm">
                     {doc.file_size ? formatFileSize(doc.file_size) : "-"}
                   </TableCell>
-                  <TableCell className="py-2.5">
-                    <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-all duration-200">
-                      <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-primary hover:bg-primary/10" onClick={() => onPreview(doc)} title="Preview">
-                        <Eye className="h-3.5 w-3.5" />
+                  <TableCell>
+                    <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onPreview(doc)}>
+                        <Eye className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-indigo-500 hover:bg-indigo-500/10" onClick={() => setShareDoc(doc)} title="Share">
-                        <Share2 className="h-3.5 w-3.5" />
+                      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setShareDoc(doc)}>
+                        <Share2 className="h-4 w-4" />
                       </Button>
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-7 w-7 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                        className="h-8 w-8 text-destructive hover:text-destructive"
                         onClick={() => setDeleteId(doc.id)}
-                        title="Delete"
                       >
-                        <Trash2 className="h-3.5 w-3.5" />
+                        <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
                   </TableCell>

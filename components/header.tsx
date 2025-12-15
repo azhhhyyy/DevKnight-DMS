@@ -25,107 +25,95 @@ export async function Header() {
   }
 
   const roleLabel = role.charAt(0).toUpperCase() + role.slice(1)
-  const roleColor = role === "admin" ? "text-amber-600 dark:text-amber-500" : role === "editor" ? "text-indigo-600 dark:text-indigo-400" : "text-muted-foreground"
+  const roleColor = role === "admin" ? "text-amber-600" : role === "editor" ? "text-blue-600" : "text-muted-foreground"
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-14 items-center px-4 sm:px-6 gap-4">
-        {/* Logo Area */}
-        <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/20">
-            <FileStack className="h-4 w-4 text-primary" />
+    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+      <div className="flex items-center justify-between h-16 px-6">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-primary">
+            <FileStack className="h-5 w-5 text-primary-foreground" />
           </div>
-          <div className="hidden sm:block">
-            <h1 className="text-sm font-semibold tracking-tight text-foreground">DevKnight DMS</h1>
+          <div>
+            <h1 className="text-lg font-semibold tracking-tight">DevKnight DMS</h1>
+            <p className="text-xs text-muted-foreground">Document Management System</p>
           </div>
         </Link>
 
-        {/* Divider */}
-        <div className="hidden h-6 w-px bg-border sm:block" />
-
         {/* Navigation Links */}
-        <nav className="flex-1 hidden md:flex items-center gap-1">
-          <NavLink href="/">Documents</NavLink>
-          {canAccessQuarantine(role as any) && (
-            <NavLink href="/quarantine">Quarantine</NavLink>
+        <nav className="hidden md:flex items-center gap-6">
+          <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+            Documents
+          </Link>
+          {canAccessQuarantine(role as "viewer" | "editor" | "admin") && (
+            <Link href="/quarantine" className="text-sm font-medium hover:text-primary transition-colors">
+              Quarantine
+            </Link>
           )}
-          {canAccessAuditLogs(role as any) && (
-            <NavLink href="/admin/audit-logs">Audit Logs</NavLink>
+          {canAccessAuditLogs(role as "viewer" | "editor" | "admin") && (
+            <Link href="/admin/audit-logs" className="text-sm font-medium hover:text-primary transition-colors">
+              Audit Logs
+            </Link>
           )}
-          {canManageUsers(role as any) && (
-            <>
-              <NavLink href="/admin/shares">Shares</NavLink>
-              <NavLink href="/admin/users">Users</NavLink>
-            </>
+          {canManageUsers(role as "viewer" | "editor" | "admin") && (
+            <Link href="/admin/shares" className="text-sm font-medium hover:text-primary transition-colors">
+              Shares
+            </Link>
+          )}
+          {canManageUsers(role as "viewer" | "editor" | "admin") && (
+            <Link href="/admin/users" className="text-sm font-medium hover:text-primary transition-colors">
+              Users
+            </Link>
           )}
         </nav>
 
-        {/* Right Side Actions */}
-        <div className="flex items-center gap-2 ml-auto">
-          {/* Add ThemeToggle here if available later */}
-
-          {user && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="h-8 gap-2 px-2 hover:bg-muted/50 rounded-full border border-transparent hover:border-border transition-all">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <User className="h-3.5 w-3.5" />
-                  </div>
-                  <div className="hidden sm:block text-left">
-                    <span className="text-xs font-medium block max-w-[120px] truncate">{user.email}</span>
-                  </div>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 p-2 rounded-xl border-border/60 shadow-lg shadow-black/5 bg-background/95 backdrop-blur-xl">
-                <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">{user.email}</p>
-                    <div className="flex items-center text-xs text-muted-foreground">
-                      <Shield className="h-3 w-3 mr-1 text-primary" />
-                      <span className={roleColor}>{roleLabel}</span>
-                    </div>
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator className="my-1" />
-                {canManageUsers(role as any) && (
-                  <>
-                    <DropdownMenuItem asChild className="rounded-lg focus:bg-sidebar-accent">
-                      <Link href="/admin/users" className="cursor-pointer">
-                        <User className="h-4 w-4 mr-2 opacity-70" />
-                        Manage Users
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild className="rounded-lg focus:bg-sidebar-accent">
-                      <Link href="/admin/shares" className="cursor-pointer">
-                        <Link2 className="h-4 w-4 mr-2 opacity-70" />
-                        Manage Shares
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator className="my-1" />
-                  </>
-                )}
-                <div className="p-1">
-                  <LogoutButton />
+        {/* User Menu */}
+        {user && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="gap-2">
+                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-muted">
+                  <User className="h-4 w-4" />
                 </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
-        </div>
+                <div className="hidden sm:block text-left">
+                  <p className="text-sm font-medium truncate max-w-[150px]">{user.email}</p>
+                  <p className={`text-xs ${roleColor}`}>
+                    <Shield className="h-3 w-3 inline mr-1" />
+                    {roleLabel}
+                  </p>
+                </div>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuLabel>
+                <div>
+                  <p className="font-medium">{user.email}</p>
+                  <p className={`text-xs ${roleColor}`}>{roleLabel}</p>
+                </div>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {canManageUsers(role as "viewer" | "editor" | "admin") && (
+                <>
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/users" className="cursor-pointer">
+                      <User className="h-4 w-4 mr-2" />
+                      Manage Users
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/shares" className="cursor-pointer">
+                      <Link2 className="h-4 w-4 mr-2" />
+                      Manage Shares
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                </>
+              )}
+              <LogoutButton />
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </div>
     </header>
-  )
-}
-
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
-  // Simple link wrapper, active state logic would ideally come from usePathname but this is server component.
-  // We'll keep it simple or check if we can make it a client component for active states, 
-  // but for now keeping it server-side compatible as per original.
-  return (
-    <Link
-      href={href}
-      className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-all"
-    >
-      {children}
-    </Link>
   )
 }
