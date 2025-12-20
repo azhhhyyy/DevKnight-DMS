@@ -1,13 +1,14 @@
 "use client"
 
-import { Calendar, Building2, FileType, RotateCcw } from "lucide-react"
+import { Calendar, Building2, FileType, RotateCcw, Tag } from "lucide-react"
+import useSWR from "swr"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { getDocTypeInfo } from "@/lib/filename-parser"
-import type { DocumentFilters } from "@/lib/types"
+import type { DocumentFilters, Tag as TagType } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
 interface SidebarFiltersProps {
@@ -19,6 +20,8 @@ interface SidebarFiltersProps {
   onReset: () => void
 }
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
 export function SidebarFilters({
   filters,
   availableTypes,
@@ -27,8 +30,15 @@ export function SidebarFilters({
   onFilterChange,
   onReset,
 }: SidebarFiltersProps) {
+  const { data: tagsData } = useSWR<{ tags: TagType[] }>("/api/tags", fetcher)
+  const availableTags = tagsData?.tags || []
+
   const hasActiveFilters =
-    filters.types.length > 0 || filters.companies.length > 0 || filters.dateFrom || filters.dateTo
+    filters.types.length > 0 ||
+    filters.companies.length > 0 ||
+    (filters.tags?.length || 0) > 0 ||
+    filters.dateFrom ||
+    filters.dateTo
 
   return (
     <div className="space-y-6">
@@ -46,7 +56,7 @@ export function SidebarFilters({
         </Button>
       )}
 
-      <Accordion type="multiple" defaultValue={["type", "company", "date"]} className="space-y-2">
+      <Accordion type="multiple" defaultValue={["type", "company", "tags", "date"]} className="space-y-2">
         {/* Document Type Filter */}
         <AccordionItem value="type" className="border rounded-lg px-3">
           <AccordionTrigger className="hover:no-underline py-3">
@@ -121,6 +131,45 @@ export function SidebarFilters({
                     />
                     <Label htmlFor={`company-${company}`} className="text-sm cursor-pointer">
                       {company}
+                    </Label>
+                  </div>
+                ))
+              )}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="tags" className="border rounded-lg px-3">
+          <AccordionTrigger className="hover:no-underline py-3">
+            <div className="flex items-center gap-2">
+              <Tag className="h-4 w-4" />
+              <span className="font-medium">Tags</span>
+              {(filters.tags?.length || 0) > 0 && (
+                <span className="text-xs bg-primary text-primary-foreground px-1.5 py-0.5 rounded-full">
+                  {filters.tags?.length}
+                </span>
+              )}
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="pb-3">
+            <div className="space-y-2 max-h-48 overflow-y-auto">
+              {availableTags.length === 0 ? (
+                <p className="text-sm text-muted-foreground">No tags available</p>
+              ) : (
+                availableTags.map((tag) => (
+                  <div key={tag.id} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`tag-${tag.id}`}
+                      checked={filters.tags?.includes(tag.id) || false}
+                      onCheckedChange={(checked) => {
+                        const currentTags = filters.tags || []
+                        const newTags = checked ? [...currentTags, tag.id] : currentTags.filter((t) => t !== tag.id)
+                        onFilterChange({ tags: newTags })
+                      }}
+                    />
+                    <Label htmlFor={`tag-${tag.id}`} className="text-sm cursor-pointer flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: tag.color }} />
+                      {tag.name}
                     </Label>
                   </div>
                 ))

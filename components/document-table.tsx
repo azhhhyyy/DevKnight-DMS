@@ -1,7 +1,21 @@
 "use client"
 
 import { useState } from "react"
-import { FileText, Eye, Trash2, ArrowUpDown, ArrowUp, ArrowDown, Share2, Link, Copy, Check } from "lucide-react"
+import useSWR from "swr"
+import {
+  FileText,
+  Eye,
+  Trash2,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
+  Share2,
+  Link,
+  Copy,
+  Check,
+  Tag,
+  Sparkles,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
@@ -22,11 +36,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
+import { TagManager } from "@/components/tag-manager"
 import { getDocTypeInfo, formatFileSize, formatDate } from "@/lib/filename-parser"
-import type { Document } from "@/lib/types"
+import type { Document, Tag as TagType } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
 interface DocumentTableProps {
@@ -38,6 +54,8 @@ interface DocumentTableProps {
   onSort: (column: string) => void
 }
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
 export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrder, onSort }: DocumentTableProps) {
   const [deleteId, setDeleteId] = useState<string | null>(null)
   const [isDeleting, setIsDeleting] = useState(false)
@@ -46,6 +64,15 @@ export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrde
   const [isCreatingShare, setIsCreatingShare] = useState(false)
   const [copied, setCopied] = useState(false)
   const [expiresIn, setExpiresIn] = useState("7")
+  const [tagDocId, setTagDocId] = useState<string | null>(null)
+  const [summarizingId, setSummarizingId] = useState<string | null>(null)
+  const [summaryDoc, setSummaryDoc] = useState<{ id: string; summary: string } | null>(null)
+
+  // Fetch tags for the document being edited
+  const { data: tagData, mutate: mutateTags } = useSWR<{ tags: TagType[] }>(
+    tagDocId ? `/api/documents/${tagDocId}/tags` : null,
+    fetcher,
+  )
 
   const handleDelete = async () => {
     if (!deleteId) return
@@ -107,6 +134,25 @@ export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrde
     setCopied(false)
   }
 
+  const handleSummarize = async (doc: Document) => {
+    setSummarizingId(doc.id)
+    try {
+      const res = await fetch("/api/ai/summarize", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ documentId: doc.id }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setSummaryDoc({ id: doc.id, summary: data.summary })
+      }
+    } catch (error) {
+      console.error("Summarize error:", error)
+    } finally {
+      setSummarizingId(null)
+    }
+  }
+
   const SortIcon = ({ column }: { column: string }) => {
     if (sortBy !== column) return <ArrowUpDown className="h-4 w-4 ml-1 opacity-50" />
     return sortOrder === "asc" ? <ArrowUp className="h-4 w-4 ml-1" /> : <ArrowDown className="h-4 w-4 ml-1" />
@@ -150,7 +196,7 @@ export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrde
               <TableHead>Filename</TableHead>
               <TableHead className="w-[80px]">Version</TableHead>
               <TableHead className="w-[80px]">Size</TableHead>
-              <TableHead className="w-[120px] text-right">Actions</TableHead>
+              <TableHead className="w-[160px] text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -184,6 +230,34 @@ export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrde
                       <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onPreview(doc)}>
                         <Eye className="h-4 w-4" />
                       </Button>
+                      <Popover open={tagDocId === doc.id} onOpenChange={(open) => setTagDocId(open ? doc.id : null)}>
+                        <PopoverTrigger asChild>
+                          <Button variant="ghost" size="icon" className="h-8 w-8">
+                            <Tag className="h-4 w-4" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-72" align="end">
+                          <div className="space-y-2">
+                            <p className="text-sm font-medium">Manage Tags</p>
+                            <TagManager
+                              documentId={doc.id}
+                              documentTags={tagData?.tags || []}
+                              onTagsChange={() => mutateTags()}
+                            />
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => handleSummarize(doc)}
+                        disabled={summarizingId === doc.id}
+                      >
+                        <Sparkles
+                          className={cn("h-4 w-4", summarizingId === doc.id && "animate-pulse text-amber-500")}
+                        />
+                      </Button>
                       <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setShareDoc(doc)}>
                         <Share2 className="h-4 w-4" />
                       </Button>
@@ -204,6 +278,7 @@ export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrde
         </Table>
       </div>
 
+      {/* Delete Dialog */}
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -225,6 +300,7 @@ export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrde
         </AlertDialogContent>
       </AlertDialog>
 
+      {/* Share Dialog */}
       <Dialog open={!!shareDoc} onOpenChange={handleCloseShare}>
         <DialogContent>
           <DialogHeader>
@@ -289,6 +365,24 @@ export function DocumentTable({ documents, onPreview, onDelete, sortBy, sortOrde
               )}
             </div>
           )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!summaryDoc} onOpenChange={() => setSummaryDoc(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-amber-500" />
+              AI Summary
+            </DialogTitle>
+            <DialogDescription>Auto-generated summary of the document</DialogDescription>
+          </DialogHeader>
+          <div className="p-4 bg-muted/50 rounded-lg">
+            <p className="text-sm leading-relaxed">{summaryDoc?.summary}</p>
+          </div>
+          <DialogFooter>
+            <Button onClick={() => setSummaryDoc(null)}>Close</Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </>

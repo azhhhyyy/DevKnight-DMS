@@ -23,6 +23,7 @@ export interface DocumentFilters {
   search: string
   types: string[]
   companies: string[]
+  tags: string[]
   dateFrom: string | null
   dateTo: string | null
 }
@@ -94,4 +95,38 @@ export interface UploadResult {
   isDuplicate?: boolean
   existingDocument?: Document
   isQuarantined?: boolean
+}
+
+// Tag types for custom tagging system
+export interface Tag {
+  id: string
+  name: string
+  color: string
+  created_at: string
+}
+
+export interface DocumentTag {
+  id: string
+  document_id: string
+  tag_id: string
+  created_at: string
+}
+
+// Extended Document type with tags and summary
+export interface DocumentWithTags extends Document {
+  tags?: Tag[]
+  summary?: string | null
+}
+
+// AI Rename suggestion
+export interface RenameSuggestion {
+  original: string
+  suggested: string
+  confidence: number
+  breakdown: {
+    type: string
+    company: string
+    serial: string
+    date: string
+  }
 }
